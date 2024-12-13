@@ -14,14 +14,14 @@ public class Main {
     }
 
     public static void main(String[] args){
-//        db = new DataBase();
+        db = new DataBase();
         loadData();
         menu();
-        Student s2 = new Student("78456" , "Al-Otaibi", "Abdullah", "23/11/2004", "SO")
     }
 
     public static void loadData(){
         List<List<String>> records = new ArrayList<>();
+        // Read data from file
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\mryoy\\OneDrive\\Desktop\\KFUPM\\2-Sophomore\\241\\ICS202\\project\\ICS202Project\\ICS202Project\\src\\students-details.csv"))) {
             String line;
             String firstline= br.readLine();
@@ -66,7 +66,7 @@ public class Main {
     private static void showAcademiclevels() {
         Scanner scrn = new Scanner(System.in);
         System.out.println("\n---- students in academic level ----");
-        System.out.println("Enter the academic level (FO, SO, JR, SR): : ");
+        System.out.println("Enter the academic level (FR, SO, JR, SR): : ");
         String level = scrn.nextLine();
         System.out.println(db.getStudentsByLevel(level));
         menu();
@@ -77,13 +77,14 @@ public class Main {
         System.out.println("\n---- Add student ----");
         System.out.println("enter id: ");
         int id = scrn.nextInt();
+        scrn.nextLine();
         System.out.println("enter first name: ");
         String firstName = scrn.nextLine();
         System.out.println("enter last name: ");
         String lastName = scrn.nextLine();
         System.out.println("enter date of birth name: ");
         String dateOfBirth = scrn.nextLine();
-        System.out.println("enter academic level (FO, SO, JR, SR): ");
+        System.out.println("enter academic level (FR, SO, JR, SR): ");
         String level = scrn.nextLine();
 
         Student s = new Student(id, lastName, firstName, dateOfBirth, level);
@@ -189,7 +190,7 @@ public class Main {
                 String newLevel = scrn.nextLine();
                 while (!newLevel.equals("FR") && !newLevel.equals("SO") && !newLevel.equals("JR") && !newLevel.equals("SR")){
                     System.out.println("Incorrect input, try again...");
-                    System.out.println("Enter new level(FO, SO, JR, SR): ");
+                    System.out.println("Enter new level(FR, SO, JR, SR): ");
                     newLevel = scrn.nextLine();
                 }
                 db.updateLevel(student, newLevel);

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CustomeAVLTree<T extends Comparable<? super T>> extends CustomeBST<T> {
 
     protected int height;
@@ -95,8 +97,11 @@ public class CustomeAVLTree<T extends Comparable<? super T>> extends CustomeBST<
         root.right.right = tempNode;
 
         T val = (T) root.el;
+        ArrayList<Student> list = root.students;
         root.el = root.right.el;
+        root.students = root.right.students;
         root.right.el = val;
+        root.right.students = list;
 
         getRightAVL().adjustHeight();
         adjustHeight();
@@ -110,8 +115,11 @@ public class CustomeAVLTree<T extends Comparable<? super T>> extends CustomeBST<
         root.left.left = tempNode;
 
         T val = (T) root.el;
+        ArrayList<Student> list = root.students;
         root.el = root.left.el;
+        root.students = root.left.students;
         root.left.el = val;
+        root.left.students = list;
 
         getLeftAVL().adjustHeight();
         adjustHeight();
