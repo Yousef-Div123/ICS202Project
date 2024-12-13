@@ -1,16 +1,17 @@
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedList;
 
 public class DataBase {
-    Hashtable<String, ArrayList<Student>> levelTable;
-    AVLTree<Student> idTree;
-    CustomeAVLTree<String> firstNameTree;
-    CustomeAVLTree<String> lastNameTree;
+    Hashtable<String, LinkedList<Student>> levelTable; // hashtable for getting students by levels
+    AVLTree<Student> idTree;// Avl tree to retrieve students by id(the id in student object is used as the index)
+    CustomeAVLTree<String> firstNameTree; // Avl tree to retrieve students by first name( the first name is used as the index)
+    CustomeAVLTree<String> lastNameTree; // Avl tree to retrieve students by last name( the last name is used as the index)
 
 
     public DataBase(){
-        levelTable = new Hashtable<String, ArrayList<Student>>();
+        levelTable = new Hashtable<String, LinkedList<Student>>();
         firstNameTree = new CustomeAVLTree<>();
         lastNameTree = new CustomeAVLTree<>();
         idTree = new AVLTree<Student>();
@@ -20,10 +21,10 @@ public class DataBase {
         idTree.insertAVL(student);
         firstNameTree.insertAVL(student.getFirstName(), student);
         lastNameTree.insertAVL(student.getLastName(), student);
-        if(levelTable.containsKey(student.getUniversityLevel())){
+        if(levelTable.containsKey(student.getUniversityLevel())){ // if not first time seeing a level
             levelTable.get(student.getUniversityLevel()).add(student);
         }else{
-            ArrayList<Student> newArray = new ArrayList<>();
+            LinkedList<Student> newArray = new LinkedList<>();
             newArray.add(student);
             levelTable.put(student.getUniversityLevel(), newArray);
         }
@@ -50,7 +51,7 @@ public class DataBase {
             return node.students;
         return null;
     }
-    public ArrayList<Student> getStudentsByLevel(String level){
+    public LinkedList<Student> getStudentsByLevel(String level){
         return levelTable.get(level);
     }
     public Student getStudentById(int id){
