@@ -52,4 +52,15 @@ public class Student {
     public void setUniversityLevel(String universityLevel) {
         this.universityLevel = universityLevel;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", universityLevel='" + universityLevel + '\'' +
+                '}';
+    }
 }
