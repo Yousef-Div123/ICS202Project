@@ -1,6 +1,6 @@
-public class Queue<T> {
+public class MyQueue<T> {
     private java.util.LinkedList<T> list = new java.util.LinkedList<T>();
-    public Queue() {
+    public MyQueue() {
     }
     public void clear() {
         list.clear();

@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /************************  BST.java  **************************
  *                 generic binary search tree
  */
@@ -37,6 +40,30 @@ public class BST<T extends Comparable<? super T>> {
         else prev.right = new BSTNode<T>(el);
     }
 
+    public void levelOrderTraversalByLevels(){
+        levelOrderTraversalByLevels(root);
+    }
+    private void levelOrderTraversalByLevels(BSTNode<T> root){
+        Queue q = new LinkedList();
+        int levelNodes = 0;
+        if(root==null)
+            return;
+
+        q.add(root);
+        while(!q.isEmpty()){
+            levelNodes = q.size();
+            while(levelNodes>0){
+                BSTNode n = (BSTNode)q.remove();
+                System.out.print(" " + n.el);
+                if(n.left!=null)
+                    q.add(n.left);
+                if(n.right!=null)
+                    q.add(n.right);
+                levelNodes--;
+            }
+            System.out.println("");
+        }
+    }
     public void recInsert(T el) {
         root = recInsert(root,el);
     }
@@ -50,16 +77,16 @@ public class BST<T extends Comparable<? super T>> {
         return p;
     }
 
-    public boolean isInTree(T el) {
-        return search(el) != null;
+    public boolean isInTree(int id) {
+        return search(id) != null;
     }
 
-    protected T search(T el) {
-        BSTNode<T> p = root;
+    protected Student search(int id) {
+        BSTNode<Student> p = (BSTNode<Student>) root;
         while (p != null)
-            if (el.equals(p.el))
+            if (id == p.el.id)
                 return p.el;
-            else if (el.compareTo(p.el) < 0)
+            else if (id < p.el.id)
                 p = p.left;
             else p = p.right;
         return null;
@@ -255,7 +282,7 @@ public class BST<T extends Comparable<? super T>> {
 
     public void breadthFirst() {
         BSTNode<T> p = root;
-        Queue<BSTNode<T>> queue = new Queue<BSTNode<T>>();
+        MyQueue<BSTNode<T>> queue = new MyQueue<BSTNode<T>>();
         if (p != null) {
             queue.enqueue(p);
             while (!queue.isEmpty()) {

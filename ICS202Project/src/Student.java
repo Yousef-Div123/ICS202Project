@@ -1,11 +1,12 @@
-public class Student {
-    private int id;
+public
+class Student implements Comparable<Student> {
+    public Integer id;
     private String lastName;
     private String firstName;
     private String dateOfBirth;
     private String universityLevel;
 
-    public Student(int id, String lastName, String firstName, String dateOfBirth, String universityLevel) extend Comparable {
+    public Student(int id, String lastName, String firstName, String dateOfBirth, String universityLevel) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -55,16 +56,18 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Student: " +
                 "id=" + id +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", universityLevel='" + universityLevel + '\'' +
-                '}';
+                ", universityLevel='" + universityLevel + '\'' + "\n";
     }
 
-    public int compareTo(Student o){
-        return this.id.compareTo(o.id);
+
+    @Override
+    public int compareTo(Student other) {
+        return Integer.compare(this.id, other.id);
     }
+
 }

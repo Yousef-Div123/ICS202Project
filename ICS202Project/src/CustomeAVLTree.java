@@ -1,13 +1,13 @@
-public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
+public class CustomeAVLTree<T extends Comparable<? super T>> extends CustomeBST<T> {
 
     protected int height;
 
-    public AVLTree() {
+    public CustomeAVLTree() {
         super();
         height = -1;
     }
 
-    public AVLTree(BSTNode<T> root) {
+    public CustomeAVLTree(CustomeBSTNode<T> root) {
         super(root);
         height = -1;
     }
@@ -16,20 +16,20 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
         return getHeight(root);
     }
 
-    private int getHeight(BSTNode<T> node) {
+    private int getHeight(CustomeBSTNode<T> node) {
         if(node == null)
             return -1;
         else
             return 1 + Math.max(getHeight(node.left), getHeight(node.right));
     }
 
-    private AVLTree<T> getLeftAVL() {
-        AVLTree<T> leftsubtree = new AVLTree<T>(root.left);
+    private CustomeAVLTree<T> getLeftAVL() {
+        CustomeAVLTree<T> leftsubtree = new CustomeAVLTree<T>(root.left);
         return leftsubtree;
     }
 
-    private AVLTree<T> getRightAVL() {
-        AVLTree<T> rightsubtree = new AVLTree<T>(root.right);
+    private CustomeAVLTree<T> getRightAVL() {
+        CustomeAVLTree<T> rightsubtree = new CustomeAVLTree<T>(root.right);
         return rightsubtree;
     }
 
@@ -40,14 +40,14 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
             return getRightAVL().getHeight() - getLeftAVL().getHeight();
     }
 
-    public void insertAVL(T el)  {
-        super.insert(el);
+    public void insertAVL(T el, Student student)  {
+        super.insert(el, student);
         this.balance();
     }
 
-    public void deleteAVL(T el) {
+    public void deleteAVL(T el, Student student) {
         //Q1
-        this.deleteByCopying(el);
+        this.deleteByCopying(el, student);
         this.balance();
     }
 
@@ -88,7 +88,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
 
     protected void rotateRight() {
         //Q1
-        BSTNode<T> tempNode = root.right;
+        CustomeBSTNode<T> tempNode = root.right;
         root.right = root.left;
         root.left = root.right.left;
         root.right.left = root.right.right;
@@ -103,7 +103,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
     }
 
     protected void rotateLeft() {
-        BSTNode<T> tempNode = root.left;
+        CustomeBSTNode<T> tempNode = root.left;
         root.left = root.right;
         root.right = root.left.right;
         root.left.right = root.left.left;
