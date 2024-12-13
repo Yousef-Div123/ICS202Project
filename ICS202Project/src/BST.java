@@ -22,7 +22,7 @@ public class BST<T extends Comparable<? super T>> {
         return root == null;
     }
 
-    public void insert(T el) {
+    public void insert(T el, Student student) {
         BSTNode<T> p = root, prev = null;
         while (p != null) {  // find a place for inserting new node;
             prev = p;
@@ -31,22 +31,22 @@ public class BST<T extends Comparable<? super T>> {
             else p = p.right;
         }
         if (root == null)    // tree is empty;
-            root = new BSTNode<T>(el);
+            root = new BSTNode<T>(el, student);
         else if (el.compareTo(prev.el) < 0)
-            prev.left  = new BSTNode<T>(el);
-        else prev.right = new BSTNode<T>(el);
+            prev.left  = new BSTNode<T>(el, student);
+        else prev.right = new BSTNode<T>(el, student);
     }
 
-    public void recInsert(T el) {
-        root = recInsert(root,el);
+    public void recInsert(T el, Student student) {
+        root = recInsert(root,el, student);
     }
 
-    protected BSTNode<T> recInsert(BSTNode<T> p, T el) {
+    protected BSTNode<T> recInsert(BSTNode<T> p, T el, Student student) {
         if (p == null)
-            p = new BSTNode<T>(el);
+            p = new BSTNode<T>(el, student);
         else if (el.compareTo(p.el) < 0)
-            p.left  = recInsert(p.left,el);
-        else p.right = recInsert(p.right,el);
+            p.left  = recInsert(p.left,el, student);
+        else p.right = recInsert(p.right,el, student);
         return p;
     }
 

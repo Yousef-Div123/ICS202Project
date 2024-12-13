@@ -12,6 +12,7 @@ public class DataBase {
     }
 
     public boolean addStudent(Student student){
+        idTree.insert(student.getId(), student);
         return true;
     }
 
@@ -23,7 +24,6 @@ public class DataBase {
     public ArrayList<Student> getStudentsByLastName(String lastName){}
     public ArrayList<Student> getStudentsByLevel(String level){}
     public Student getStudentById(int id){}
-
 
 
 }
