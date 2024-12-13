@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class DataBase {
-    Hashtable<String, ArrayList<Integer>> levelTable;
+    Hashtable<String, ArrayList<Student>> levelTable;
     AVLTree<Integer> idTree;
 
     public DataBase(){
