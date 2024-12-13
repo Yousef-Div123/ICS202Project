@@ -4,15 +4,14 @@ import java.util.Hashtable;
 
 public class DataBase {
     Hashtable<String, ArrayList<Student>> levelTable;
-    AVLTree<Integer> idTree;
+    AVLTree<Student> idTree;
 
     public DataBase(){
         levelTable = new Hashtable<String, ArrayList<Integer>>();
-        idTree = new AVLTree<Integer>();
+        idTree = new AVLTree<Student>();
     }
 
-    public boolean addStudent(Student student){
-        idTree.insert(student.getId(), student);
+    public boolean addStudent(Student student){{
         return true;
     }
 

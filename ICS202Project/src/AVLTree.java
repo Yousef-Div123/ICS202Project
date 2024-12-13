@@ -40,8 +40,8 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
             return getRightAVL().getHeight() - getLeftAVL().getHeight();
     }
 
-    public void insertAVL(T el, Student student)  {
-        super.insert(el, student);
+    public void insertAVL(T el)  {
+        super.insert(el);
         this.balance();
     }
 
@@ -63,6 +63,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
             int balanceFactor = getBalanceFactor();
 
             if(balanceFactor == -2) {
+                System.out.println("Balancing node with el: "+root.el);
                 if(getLeftAVL().getBalanceFactor() < 0)
                     rotateRight();
                 else
@@ -70,6 +71,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
             }
 
             else if(balanceFactor == 2) {
+                System.out.println("Balancing node with el: "+root.el);
                 if(getRightAVL().getBalanceFactor() > 0)
                     rotateLeft();
                 else
@@ -87,6 +89,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
     }
 
     protected void rotateRight() {
+        System.out.println("RIGHT ROTATION");
         //Q1
         BSTNode<T> tempNode = root.right;
         root.right = root.left;
@@ -103,6 +106,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
     }
 
     protected void rotateLeft() {
+        System.out.println("LEFT ROTATION");
         BSTNode<T> tempNode = root.left;
         root.left = root.right;
         root.right = root.left.right;
@@ -119,6 +123,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
 
     protected void rotateLeftRight()
     {
+        System.out.println("Double Rotation...");
         //Q1
         getLeftAVL().rotateLeft();
         getLeftAVL().adjustHeight();
@@ -128,6 +133,7 @@ public class AVLTree<T extends Comparable<? super T>> extends BST<T> {
 
     protected void rotateRightLeft()
     {
+        System.out.println("Double Rotation...");
         getRightAVL().rotateRight();
         getRightAVL().adjustHeight();
         this.rotateLeft();

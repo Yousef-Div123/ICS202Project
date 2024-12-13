@@ -5,7 +5,7 @@ public class Student {
     private String dateOfBirth;
     private String universityLevel;
 
-    public Student(int id, String lastName, String firstName, String dateOfBirth, String universityLevel) {
+    public Student(int id, String lastName, String firstName, String dateOfBirth, String universityLevel) extend Comparable {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -62,5 +62,9 @@ public class Student {
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", universityLevel='" + universityLevel + '\'' +
                 '}';
+    }
+
+    public int compareTo(Student o){
+        return this.id.compareTo(o.id);
     }
 }
